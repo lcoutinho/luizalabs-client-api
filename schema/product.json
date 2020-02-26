@@ -1,0 +1,22 @@
+{
+  "title": "Product",
+  "type": "object",
+  "properties": {
+    "price": {
+      "type": "number"
+    },
+    "image": {
+      "type": "string"
+    },
+    "brand": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "reviewScore": {
+      "type": "integer"
+    }
+  },
+  "required": ["price", "image","brand","title", "reviewScore"]
+}

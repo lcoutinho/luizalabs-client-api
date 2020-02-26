@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  app:
+    container_name: 'app'
+    build:
+      context: ./
+      dockerfile: docker/app/app.dockerfile
+    entrypoint: '/entrypoint.sh'
+    labels:
+      - "app.component.description=Aplicação RestFull"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongodb
+    links:
+      - mongodb:mongodb.lcoutinho.intranet
+    volumes:
+      - ./:/go/src/github.com/lcoutinho/luizalabs-client-api
+      - ./docker/app/app.entrypoint.sh:/entrypoint.sh
+    environment:
+      MONGODB_DSN: mongodb://dev:dev@mongodb.lcoutinho.intranet:27017/customer_db
+
+  test:
+    container_name: 'test'
+    build:
+      context: ./
+      dockerfile: docker/app/test.dockerfile
+    labels:
+      - "app.component.description=Aplicação RestFull"
+    depends_on:
+      - mongodb
+    links:
+      - mongodb:mongodb.lcoutinho.intranet
+    entrypoint: '/entrypoint.sh'
+    volumes:
+      - ./:/go/src/github.com/lcoutinho/luizalabs-client-api
+      - ./docker/app/test.entrypoint.sh:/entrypoint.sh
+    environment:
+      MONGODB_DSN: mongodb://test:test@mongodb.lcoutinho.intranet:27017/customer_db_test
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./docker/mongodb/config_databases:/docker-entrypoint-initdb.d

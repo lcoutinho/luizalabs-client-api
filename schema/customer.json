@@ -1,0 +1,22 @@
+{
+  "title": "Customer",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "message": {
+        "required": "Date of Birth is Required Property",
+        "pattern": "Correct format of Date Of Birth is dd-mmm-yyyy"
+      }
+    },
+    "email": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9+_.-]+@(.+)$",
+      "message": {
+        "required": "O e-mail é necessário",
+        "pattern": "E-mail inválido"
+      }
+    }
+  },
+  "required": ["name", "email"]
+}
