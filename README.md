@@ -335,7 +335,7 @@ ________________________________
 ________________________________
 
 ## Estratégias de autenticação e autorização
-	Essa API conta com duasa estratégias de autenticação e autorização: 
+	Essa API conta com duas estratégias de autenticação e autorização: 
 	    TLS_CERTIFICATE_JWT : Os tokens são gerados também com o processo de certificados dinâmicos de TLS, ou seja, a cada vez que a API irá gerar um novo token, um novo certificado de TLS também é gerado e criptografado nesse token JWT como secret.
 	    SIMPLE_JWT : Processo de utilização simples no JWT, com a secret fixa na aplicação.
     No projeto já vem com o padrão utilizando TLS_CERTIFICATE_JWT, para modificar basta alterar o arquivo ./config/config.go, mudar o valor da constante AUTH_STRATEGY
